@@ -10,6 +10,7 @@
     <div class="row">
         <div class="col col-md-6 offset-md-3">
             <br/>
+            <div th:if="${data != null}">
             <h3>Forecast for <span th:text="${data.name}"></span></h3>
             <p><b>Temperature:</b> <span th:text="${data.main.get('temp')}"></span> °F</p>
             <p><b>Cloud Cover:</b> <span th:text="${data.clouds.get('all')}"></span> %</p>
@@ -17,6 +18,7 @@
             <p><b>Conditions:</b> <span th:text="${data.weather[0].get('description')}"></span>
                 <img th:src="@{${'http://openweathermap.org/img/w/'
                 + data.weather[0].get('icon') + '.png'}}"></p>
+        </div>
         </div>
     </div>
 </div>
