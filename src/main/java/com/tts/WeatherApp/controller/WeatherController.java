@@ -20,7 +20,8 @@ public class WeatherController {
     public String getIndex(Model model) {
 //        Response response = weatherService.getForecast("71106");
 //        model.addAttribute("data", response);
-        // Make a change her to handle the form, now we don't want to call WeatherService
+
+        // Make a change here to handle the form, now we don't want to call WeatherService
         model.addAttribute("request", new Request());
         return "index";
     }
