@@ -6,9 +6,13 @@ import com.tts.WeatherApp.model.ZipCode;
 import com.tts.WeatherApp.repository.ZipCodeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 @Service
 public class WeatherService {
@@ -35,6 +39,18 @@ public class WeatherService {
             response.setName("error");
             return response;
         }
+    }
+
+    public List<ZipCode> getRecentSearches() {
+        List<ZipCode> recentSearches =
+                zipCodeRepository.findAll(
+                        PageRequest.of(
+                                0,
+                                10,
+                                Sort.by("createdAt").descending()))
+                        .getContent();
+        return recentSearches;
+
     }
 
 

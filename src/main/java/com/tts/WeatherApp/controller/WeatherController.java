@@ -3,6 +3,7 @@ package com.tts.WeatherApp.controller;
 
 import com.tts.WeatherApp.model.Request;
 import com.tts.WeatherApp.model.Response;
+import com.tts.WeatherApp.repository.ZipCodeRepository;
 import com.tts.WeatherApp.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class WeatherController {
 
         // Make a change here to handle the form, now we don't want to call WeatherService
         model.addAttribute("request", new Request());
+        model.addAttribute("recentSearches", weatherService.getRecentSearches());
         return "index";
     }
 
